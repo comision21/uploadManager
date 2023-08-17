@@ -8,5 +8,10 @@
       "id": 2,
       "name": "Lamborghini Murciélago",
       "image": "1692285643708_products_.jpg"
+   },
+   {
+      "id": 3,
+      "name": "Ford Focus",
+      "image": null
    }
 ]
