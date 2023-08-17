@@ -1,3 +1,5 @@
+const {readJSON, writeJSON} = require('../data')
+
 module.exports = {
     index : (req,res) => {
         return res.render('productsOneImage')
@@ -6,7 +8,18 @@ module.exports = {
         return res.render('productsAddOneImage')
     },
     create : (req,res) => {
-        return res.send(req.body)
+
+        const products = readJSON('productsOneImage.json');
+
+        products.push({
+            id : products.length ? products[products.length -1 ].id + 1 : 1,
+            name: req.body.name,
+            image : req.file.filename
+        })
+
+        writeJSON(products,'productsOneImage.json')
+
+        return res.redirect('/')
     },
     edit : (req,res) => {
         return res.render('productEditOneImage')

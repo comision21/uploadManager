@@ -1,5 +1,12 @@
+const {readJSON} = require('../data')
+
 module.exports = {
     index : (req,res) => {
-        return res.render('index')
+
+        const productsOneImage = readJSON('productsOneImage.json');
+
+        return res.render('index', {
+            productsOneImage
+        })
     }
 }
