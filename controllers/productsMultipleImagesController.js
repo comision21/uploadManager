@@ -22,10 +22,36 @@ module.exports = {
         return res.redirect('/')
     },
     edit : (req,res) => {
-        return res.render('productEditMultipleImages')
+
+        const products = readJSON('productsMultipleImages.json');
+        const product = products.find((product) => product.id === +req.params.id);
+
+        return res.render('productEditMultipleImages', {
+            ...product
+        })
     },
     update : (req,res) => {
-        return res.send(req.body)
+
+        const products = readJSON('productsMultipleImages.json');
+
+        const productsModify = products.map((product) => {
+            if (product.id === +req.params.id) {
+              req.files.length &&
+              product.images.forEach(image => {
+                existsSync(`./public/images/${image}`) &&
+                unlinkSync(`./public/images/${image}`);
+              });
+              
+              product.name = req.body.name;
+              product.images = req.files.length ? req.files.map(file => file.filename) : product.images;
+            }
+      
+            return product;
+          });
+      
+          writeJSON(productsModify, "productsMultipleImages.json");
+      
+          return res.redirect("/");
     },
     remove : (req,res) => {
         return res.send('Producto eliminado')

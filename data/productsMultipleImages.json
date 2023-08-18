@@ -23,7 +23,13 @@
    },
    {
       "id": 3,
-      "name": "Producto sin imágenes",
-      "images": []
+      "name": "Fiat Mobi",
+      "images": [
+         "1692373967163_products_.webp",
+         "1692373967175_products_.webp",
+         "1692373967181_products_.webp",
+         "1692373967193_products_.webp",
+         "1692373967203_products_.webp"
+      ]
    }
 ]
