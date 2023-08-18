@@ -20,5 +20,10 @@
          "1692307180911_products_.jpg",
          "1692307180928_products_.jpg"
       ]
+   },
+   {
+      "id": 3,
+      "name": "Producto sin imágenes",
+      "images": []
    }
 ]
