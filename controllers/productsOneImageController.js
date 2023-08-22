@@ -49,6 +49,20 @@ module.exports = {
     return res.redirect("/");
   },
   remove: (req, res) => {
-    return res.send("Producto eliminado");
+
+    const products = readJSON("productsOneImage.json");
+
+    const productsModify = products.filter((product) => {
+      if (product.id === +req.params.id) {
+          existsSync(`./public/images/${product.image}`) &&
+          unlinkSync(`./public/images/${product.image}`);
+      }
+
+      return product.id !== +req.params.id;
+    });
+
+    writeJSON(productsModify, "productsOneImage.json");
+
+    return res.redirect("/");
   },
 };

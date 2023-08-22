@@ -23,7 +23,12 @@ module.exports = {
         return res.redirect('/')
     },
     edit : (req,res) => {
-        return res.render('productEditMainImage')
+
+        const products = readJSON('productsMainImage.json');
+        const product = products.find(product => product.id === +req.params.id)
+        return res.render('productEditMainImage',{
+            ...product
+        })
     },
     update : (req,res) => {
         return res.send(req.body)
